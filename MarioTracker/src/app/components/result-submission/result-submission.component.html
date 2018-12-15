@@ -1,0 +1,103 @@
+<div class="box">
+  <div class="field">
+    <label class="label">Character</label>
+    <div class="control">
+      <div class="select is-fullwidth">
+        <select [(ngModel)]="character">
+          <option *ngFor="let character of characters">{{character}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Race 1</label>
+      Track
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select [(ngModel)]="tracks[0]">
+            <option *ngFor="let map of maps">{{map}}</option>
+          </select>
+        </div>
+      </div>
+      Position
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select [(ngModel)]="results[0]">
+            <option *ngFor="let position of positions">{{position}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Race 2</label>
+      Track
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select [(ngModel)]="tracks[1]">
+            <option *ngFor="let map of maps">{{map}}</option>
+          </select>
+        </div>
+      </div>
+      Position
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select [(ngModel)]="results[1]">
+            <option *ngFor="let position of positions">{{position}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Race 3</label>
+      Track
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select [(ngModel)]="tracks[2]">
+            <option *ngFor="let map of maps">{{map}}</option>
+          </select>
+        </div>
+      </div>
+      Position
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select [(ngModel)]="results[2]">
+            <option *ngFor="let position of positions">{{position}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Race 4</label>
+      Track
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select [(ngModel)]="tracks[3]">
+            <option *ngFor="let map of maps">{{map}}</option>
+          </select>
+        </div>
+      </div>
+      Position
+      <div class="control">
+        <div class="select is-fullwidth">
+          <select [(ngModel)]="results[3]">
+            <option *ngFor="let position of positions">{{position}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field is-grouped center">
+      <p class="control">
+        <a class="button is-success is-rounded" (click)="submitForm()">
+          Submit
+        </a>
+      </p>
+      <p class="control">
+        <a class="button is-rounded" (click)="resetForm()">
+          Reset
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <swal #submission title="Submission Succesful" type="success" [showCancelButton]="true" (confirm)="routeResultForm()" confirmButtonText="Submit Another Result"
+    (cancel)="routeHome()" cancelButtonText="Go To Home">
+  </swal>

@@ -1,0 +1,85 @@
+<div class="box">
+    <h1 class="title">Average Point Ratio Leaderboard</h1>
+    <table class="table is-fullwidth is-striped" *ngIf="ratioLeaderboard">
+        <thead>
+            <tr>
+                <th>Ranking</th>
+                <th>Username</th>
+                <th>Point Ratio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of ratioLeaderboard; let i = index">
+                <th>{{i + 1}}</th>
+                <td>
+                    <a routerLink="../profile/{{user.UID}}">
+                        <article class="media">
+                            <figure class="media-left">
+                                <p class="image is-32x32">
+                                    <img class="is-rounded" src="{{user.pictureLink}}">
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        {{user.userName}}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </td>
+                <td>{{user.pointRatio}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="box">
+    <h1 class="title">Overall Score Leaderboard</h1>
+    <table class="table is-fullwidth is-striped" *ngIf="overallScoreleaderboard">
+        <thead>
+            <tr>
+                <th>Ranking</th>
+                <th>Username</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of overallScoreleaderboard; let i = index">
+                <th>{{i + 1}}</th>
+                <td>
+                    <a routerLink="../profile/{{user.UID}}">
+                        <article class="media">
+                            <figure class="media-left">
+                                <p class="image is-32x32">
+                                    <img class="is-rounded" src="{{user.pictureLink}}">
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        {{user.userName}}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </td>
+                <td>{{user.score}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="box has-text-centered last">
+    <h1 class="has-text-left">
+        <strong>Score Trends</strong>
+    </h1>
+    <div>
+        <canvas id="scoreTrendsChart">{{scoreTrendsChart}}</canvas>
+    </div>
+    <p *ngIf="hasData === false">
+        No Results Available
+    </p>
+</div>

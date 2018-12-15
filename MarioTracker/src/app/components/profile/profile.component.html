@@ -1,0 +1,112 @@
+<div class="card" *ngIf="user">
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img src="{{user.pictureLink}}" alt="Placeholder image">
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img class="is-rounded" src="{{user.pictureLink}}" alt="Placeholder image">
+          </figure>
+          <a *ngIf="uid == paramUID" class="edit" (click)="openPictureDialog()">
+              <span class="icon is-medium">
+                  <i class="fas fa-edit"></i>
+              </span>
+          </a>
+        </div> 
+        <div class="media-content">
+          <div class="title is-4">{{user.name}}</div>
+          <div class="subtitle is-6">@{{user.userName}}</div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="box" *ngIf="user">
+  <div class="columns is-centered is-mobile">
+    <div class="column has-text-centered has-vertically-aligned-content ">
+      <h1><strong>Ranking</strong></h1>
+      <h3>
+        #{{ranking}}
+      </h3>
+    </div>
+    <div class="column has-text-centered has-vertically-aligned-content ">
+      <h1><strong>Score</strong></h1>
+      <h3>
+        {{user.score}}
+      </h3>
+    </div>
+    <div class="column has-text-centered has-vertically-aligned-content ">
+      <h1><strong>Submissions</strong></h1>
+      <h3>
+        {{user.numRaces}}
+      </h3>
+    </div>
+  </div>
+</div>
+
+<div class="box" *ngIf="placementStats">
+  <div class="columns is-centered is-mobile">
+    <div class="column has-text-centered has-vertically-aligned-content ">
+      <h1><strong>Victories</strong></h1>
+      <h3>
+        {{placementStats.victories}}
+        <span class="icon is-small">
+            <i class="fas fa-trophy"></i>
+        </span>
+      </h3>
+    </div>
+    <div class="column has-text-centered has-vertically-aligned-content ">
+      <h1><strong>Top 3 Finishes</strong></h1>
+      <h3>
+        {{placementStats.top3}}
+        <span class="icon is-small">
+            <i class="fas fa-trophy"></i>
+        </span>
+      </h3>
+    </div>
+    <div class="column has-text-centered has-vertically-aligned-content ">
+      <h1><strong>Top 5 Finishes</strong></h1>
+      <h3>
+        {{placementStats.top5}}
+        <span class="icon is-small">
+            <i class="fas fa-trophy"></i>
+        </span>
+      </h3>
+    </div>
+  </div>
+</div>
+
+<div class="box has-text-centered">
+  <h1 class="has-text-left"><strong>Overall Race Results</strong></h1>
+  <div>
+    <canvas id="resultsPieChart">{{resultsPieChart}}</canvas>
+  </div>
+  <p *ngIf="hasData === false">
+    No Results Available
+  </p>
+</div>
+
+<div class="modal is-active" id="pictureDialog" *ngIf="showPictureDialog">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <p class="title is-4">Please click on your desired profile picture.</p>
+        <div class="columns is-mobile">
+            <div class="column" *ngFor="let link of pictureURLS">
+              <a (click)="updatePicture(link)">
+                <figure class="image is-48x48">
+                    <img class="is-rounded" src="{{link}}">
+                </figure>
+              </a>
+            </div>
+        </div>
+        <div class="has-text-success" *ngIf="successfulPatch">
+          Your picture has been updated!
+        </div>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="closePictureDialog()"></button>
+</div>
